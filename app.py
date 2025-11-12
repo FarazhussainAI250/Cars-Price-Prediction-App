@@ -174,10 +174,17 @@ if predict_button:
     try:
         pred = model.predict(input_df)[0]
         st.success("✅ Estimated Price: " + clean_price_display(pred))
-
-
-
-
+        
+        # Show suggestions based on price range
+        pred_pkr = pred * 280
+        if pred_pkr < 1500000:  # Less than 15 lakh
+            st.info("💡 Suggestion: Consider checking fuel efficiency and maintenance costs for budget cars.")
+        elif pred_pkr < 3000000:  # 15-30 lakh
+            st.info("💡 Suggestion: Good mid-range option. Check safety ratings and resale value.")
+        elif pred_pkr < 5000000:  # 30-50 lakh
+            st.info("💡 Suggestion: Premium segment. Consider luxury features and brand reputation.")
+        else:  # Above 50 lakh
+            st.info("💡 Suggestion: High-end luxury car. Focus on performance specs and exclusive features.")
 
     except Exception as e:
         st.error("Prediction failed: " + str(e))
