@@ -5,14 +5,14 @@ import numpy as np
 import joblib
 import re
 
-st.set_page_config(page_title="Car Price Estimator (2025)", layout="centered")
+st.set_page_config(page_title="Car Price Estimator ", layout="centered")
 
 
 st.markdown("""
 <style>
 /* Background Image */
 .stApp {
-    background-image: url("https://images.unsplash.com/photo-1586375103528-8bc247aa8110?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjYzfHxjYXJzfGVufDB8fDB8fHww");
+    background-image: url("https://png.pngtree.com/thumb_back/fh260/background/20210920/pngtree-line-light-effect-gradient-abstract-dark-pink-background-image_903976.png");
     background-size: cover;
     background-position: right;
     background-repeat: no-repeat;
@@ -46,8 +46,7 @@ st.markdown("""
 }
 </style>
 
-<div id="top-header">Respected Sir Shahzaib & Sir Ali Hamza</div>
-<div id="bottom-footer">Developed by Faraz Hussain</div>
+
 """, unsafe_allow_html=True)
 
 # --------- Helper functions (same logic as backend) ----------
@@ -217,4 +216,5 @@ if predict_button:
         st.error("Prediction failed: " + str(e))
 
 st.markdown("---")
-st.caption("deploy on streamlit.")
+st.caption("developed by faraz hussain.")
+
