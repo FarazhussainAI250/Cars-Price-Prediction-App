@@ -185,6 +185,29 @@ if predict_button:
             st.info("💡 Suggestion: Premium segment. Consider luxury features and brand reputation.")
         else:  # Above 50 lakh
             st.info("💡 Suggestion: High-end luxury car. Focus on performance specs and exclusive features.")
+        
+        # Similar priced models from dataset
+        try:
+            df_full = pd.read_csv("car_data.csv", encoding="latin1")
+            def _clean_price(p):
+                if pd.isnull(p): return np.nan
+                s = str(p).replace("$","").replace(",","")
+                if "-" in s:
+                    parts = s.split("-")
+                    try:
+                        return (float(parts[0]) + float(parts[1]))/2
+                    except:
+                        return np.nan
+                try:
+                    return float(s)
+                except:
+                    return np.nan
+            df_full["CleanPrice"] = df_full["Cars Prices"].apply(_clean_price)
+            sample_close = df_full.iloc[(df_full["CleanPrice"] - pred).abs().argsort()[:5]][["Company Names","Cars Names","Cars Prices","HorsePower"]]
+            st.write("Similar priced models (from dataset):")
+            st.dataframe(sample_close.reset_index(drop=True))
+        except Exception:
+            pass
 
     except Exception as e:
         st.error("Prediction failed: " + str(e))
